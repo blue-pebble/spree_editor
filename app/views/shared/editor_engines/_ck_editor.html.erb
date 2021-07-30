@@ -1,11 +1,14 @@
-<%= javascript_include_tag Ckeditor.cdn_url %>
+<%= javascript_include_tag '//cdn.ckeditor.com/4.16.1/standard-all/ckeditor.js' %>
 <%= javascript_include_tag 'ckeditor/config.js' %>
 
   <script>
     $(function() {
       <% ids.each do |id| %>
         if ($("#<%= id %>").length > 0) {
-          CKEDITOR.replace("<%= id %>");
+          CKEDITOR.replace("<%= id %>", {
+            extraPlugins: 'uploadimage, image2',
+            uploadUrl: '/ckeditor/pictures?responseType=json'
+          }); 
         }
       <% end %>
     });
