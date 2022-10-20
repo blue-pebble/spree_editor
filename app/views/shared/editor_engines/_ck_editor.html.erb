@@ -5,11 +5,10 @@
     $(function () {
         <% ids.each do |id| %>
         if ($("#<%= id %>").length > 0) {
-            CKEDITOR.replace("<%= id %>", {
-                filebrowserUploadUrl: "/ckeditor/pictures?responseType=json",
-                filebrowserImageBrowseUrl: "/ckeditor/pictures",
-                filebrowserImageUploadUrl: "/ckeditor/pictures?"
-            });
+            var config = {}
+            CKEDITOR.editorConfig(config)
+            config.removeDialogTabs = '';
+            CKEDITOR.replace("<%= id %>", config );
         }
         <% end %>
     });
